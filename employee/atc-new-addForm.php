@@ -41,6 +41,25 @@
             </div>
 
         </div>
+        
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header text-white bg-primary">
+                    ค่าบริการต่อภาษี
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>ต่อทะเบียนด่วน</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control form-control-sm" name="price_service_express" value="0" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-white bg-warning">
@@ -65,7 +84,7 @@
                         <select name="id_category_car" class="form-control form-control-sm" required>
                             <option value="0">--- เลือกประเภทรถ ---</option>
                             <?php
-                            $sql = "SELECT * FROM tb_category_car";
+                            $sql = "SELECT * FROM tb_category_car ORDER BY(category_car_name) ASC";
                             $rs = mysqli_query($conn, $sql);
                             
                             while($row = mysqli_fetch_array($rs)){
@@ -104,6 +123,10 @@
                     <div class="form-group">
                         <label>รุ่นโมเดลรถ</label>
                         <input type="text" class="form-control form-control-sm" name="car_model" required>
+                    </div>
+                    <div class="form-group">
+                        <label>cc รถ</label>
+                        <input type="number" class="form-control form-control-sm" name="car_cc" value="0" required>
                     </div>
                     <div class="form-group">
                         <label>เลขตัวถังรถ</label>

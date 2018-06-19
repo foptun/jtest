@@ -6,6 +6,8 @@ $sex = $_POST['sex'];
 $address = $_POST['address'];
 $tel = $_POST['tel'];
 
+$price_service_express = $_POST['price_service_express'];
+
 $car_reg_date = $_POST['car_reg_date'];
 $car_exp_date = $_POST['car_exp_date'];
 
@@ -18,7 +20,10 @@ $car_province_id = $_POST['car_province_id'];
 
 $car_brand = $_POST['car_brand'];
 $car_model = $_POST['car_model'];
+$car_cc = $_POST['car_cc'];
 $car_chassis = $_POST['car_chassis'];
+
+$price_car_tax = $_POST['price_car_tax'];
 
 $price_tax_fine = $_POST['price_tax_fine'];
 
@@ -50,6 +55,7 @@ $sql = "
         car_province_id,
         car_brand,
         car_model,
+        car_cc,
         car_chassis,
         car_reg_date,
         car_exp_date,
@@ -61,6 +67,7 @@ $sql = "
         '$car_province_id',
         '$car_brand',
         '$car_model',
+        '$car_cc',
         '$car_chassis',
         '$car_reg_date',
         '$car_exp_date',
@@ -79,13 +86,17 @@ $sql = "
         id_car,
         id_insurance_type,
         service_date,
+        price_car_tax_order,
         price_tax_fine,
+        price_service_express,
         id_employee
     ) VALUES(
         '$INSERT_CAR_ID',
         '0',
         CURRENT_DATE(),
+        '$price_car_tax',
         '$price_tax_fine',
+        '$price_service_express',
         '$LOGIN_EMPLOYEE'
     )
 ";

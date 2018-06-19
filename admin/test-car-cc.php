@@ -32,7 +32,7 @@ if($cc <= 600){
 }
 
 ?>
-<form action="" method="get">
+<form action="" method="post">
     <input type="text" name="cc" > | 
     <input type="submit" value="คำนวน CC">
 </form>

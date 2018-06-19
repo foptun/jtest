@@ -17,6 +17,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>ID</th>
                             <th>ประเภทรถ</th>
                             <th>ค่าตรวจสภาพรถ</th>
                             <th>ค่าบริการต่อภาษี</th>
@@ -27,12 +28,15 @@
                     </thead>
                     <tbody>
                         <?php
-                        $sql = "SELECT * FROM tb_category_car";
+                        $sql = "SELECT * FROM tb_category_car ORDER BY(category_car_name) ASC";
                         $rs = mysqli_query($conn, $sql);
 
+                        $index = 1;
                         while($row = mysqli_fetch_array($rs)){
+                            
                         ?>
                         <tr>
+                            <td> <?=$index?> </td>
                             <td> <?=$row['id']?> </td>
                             <td> <?=$row['category_car_name']?> </td>
                             <td> <?=$row['price_check_car']?> </td>
@@ -40,11 +44,14 @@
                             <td> <?=$row['price_car_tax']?> </td>
                             <td> <?=$row['price_atc']?> </td>
                             <td>
-                                <a href="index.php?menu=category-car-editForm&id=<?=$row['id']?>" class="btn btn-primary">Edit</a>
-                                <a href="index.php?menu=category-car-delDB&id=<?=$row['id']?>" class="btn btn-danger" onclick="return confirm('ต้องการจะลบข้อมูล')">Del</a>
+                                <a href="index.php?menu=category-car-editForm&id=<?=$row['id']?>" class="btn btn-sm btn-primary"> <i class="fa fa-cog"></i> </a>
+                                <a href="index.php?menu=category-car-delDB&id=<?=$row['id']?>" class="btn btn-sm btn-danger" onclick="return confirm('ต้องการจะลบข้อมูล')"> <i class="fa fa-trash"></i> </a>
                             </td>
                         </tr>
-                        <?php } ?>
+                        <?php 
+                            $index++;
+                        } 
+                    ?>
                     </tbody>
                 </table>
 

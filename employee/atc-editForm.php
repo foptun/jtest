@@ -98,7 +98,7 @@ $row = mysqli_fetch_array($rs);
                         <select name="id_category_car" class="form-control form-control-sm" required>
                             <option value="0">--- เลือกประเภทรถ ---</option>
                             <?php
-                            $sql2 = "SELECT * FROM tb_category_car";
+                            $sql2 = "SELECT * FROM tb_category_car ORDER BY(category_car_name)";
                             $rs2 = mysqli_query($conn, $sql2);
                             
                             while($row2 = mysqli_fetch_array($rs2)){

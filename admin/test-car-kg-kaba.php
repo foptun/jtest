@@ -8,6 +8,7 @@ if($kg <= 500){
 }else if($kg >= 501 && $kg <= 750){
     $price = 450;
 }else if($kg >= 751 && $kg <= 1000){
+
     $price = 600;
 }else if($kg >= 1001 && $kg <= 1250){
     $price = 750;
@@ -19,6 +20,7 @@ if($kg <= 500){
     $price = 1350;
 }else if($kg >= 2001 && $kg <= 2500){
     $price = 1650;
+    
 }else if($kg >= 2501 && $kg <= 3000){
     $price = 1950;
 }else if($kg >= 3001 && $kg <= 3500){
