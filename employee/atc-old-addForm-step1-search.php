@@ -57,7 +57,9 @@ $rs = mysqli_query($conn, $sql);
                             <td> <?=$row['car_char']?> - <?=$row['car_number']?> <?=$row['PROVINCE_NAME']?> </td>
                             <td> <?=$row['category_car_name']?> </td>
                             <td>
-                                <form action="index.php?menu=atc-old-addForm-step2-confirm&id=<?=$row['id_order_service']?>" method="post">
+                                <!-- <form action="index.php?menu=atc-old-addForm-step2-addForm&id=<?=$row['id_order_service']?>" method="post"> -->
+                                <form action="index.php" method="get">
+                                    <input type="hidden" name="menu" value="atc-old-addForm-step2-addForm">
 
                                     <input type="hidden" name="id_order_service" value="<?=$row['id_order_service']?>">
                                     <input type="hidden" name="id_car" value="<?=$row['id_car']?>">
@@ -70,6 +72,7 @@ $rs = mysqli_query($conn, $sql);
                                     <input type="hidden" name="address" value="<?=$row['address']?>">
                                     <input type="hidden" name="tel" value="<?=$row['tel']?>">
                                     <input type="hidden" name="car_reg_date" value="<?=$row['car_reg_date']?>">
+                                    <input type="hidden" name="car_exp_date" value="<?=$row['car_exp_date']?>">
 
                                     <input type="hidden" name="id_category_car" value="<?=$row['id_category_car']?>:<?=$row['category_car_name']?>">
 
@@ -80,6 +83,7 @@ $rs = mysqli_query($conn, $sql);
 
                                     <input type="hidden" name="car_brand" value="<?=$row['car_brand']?>">
                                     <input type="hidden" name="car_model" value="<?=$row['car_model']?>">
+                                    <input type="hidden" name="car_cc" value="<?=$row['car_cc']?>">
                                     <input type="hidden" name="car_chassis" value="<?=$row['car_chassis']?>">
 
                                     <button type="submit"  class="btn btn-info"> <i class="fa fa-user"></i> เลือก </a>
