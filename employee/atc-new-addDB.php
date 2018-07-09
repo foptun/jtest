@@ -25,6 +25,8 @@ $car_chassis = $_POST['car_chassis'];
 
 $price_car_tax = $_POST['price_car_tax'];
 
+$price_car_tax_owe = $_POST['price_car_tax_owe'];
+
 $price_tax_fine = $_POST['price_tax_fine'];
 
 $sql = "INSERT INTO tb_customer(
@@ -87,6 +89,7 @@ $sql = "
         id_insurance_type,
         service_date,
         price_car_tax_order,
+        price_car_tax_owe,
         price_tax_fine,
         price_service_express,
         id_employee
@@ -95,6 +98,7 @@ $sql = "
         '0',
         CURRENT_DATE(),
         '$price_car_tax',
+        '$price_car_tax_owe',
         '$price_tax_fine',
         '$price_service_express',
         '$LOGIN_EMPLOYEE'
