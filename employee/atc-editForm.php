@@ -80,6 +80,25 @@ $row = mysqli_fetch_array($rs);
             </div>
 
         </div>
+
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header text-white bg-primary">
+                    ค่าบริการต่อภาษี
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>ต่อทะเบียนด่วน</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control form-control-sm" name="price_service_express" value="<?=$row['price_service_express']?>" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-white bg-warning">
@@ -90,6 +109,12 @@ $row = mysqli_fetch_array($rs);
                         <label>วันจดทะเบียนรถ</label>
                         <div class="form-inline">
                             <input type="date" class="form-control form-control-sm" name="car_reg_date" value="<?=$row['car_reg_date']?>" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>วันหมดภาษี(ล่าสุด)</label>
+                        <div class="form-inline">
+                            <input type="date" class="form-control form-control-sm" name="car_exp_date" value="<?=$row['car_exp_date']?>" required>
                         </div>
                     </div>
                     
@@ -150,6 +175,10 @@ $row = mysqli_fetch_array($rs);
                     <div class="form-group">
                         <label>รุ่นโมเดลรถ</label>
                         <input type="text" class="form-control form-control-sm" name="car_model" value="<?=$row['car_model']?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>cc รถ</label>
+                        <input type="number" class="form-control form-control-sm" name="car_cc" value="<?=$row['car_cc']?>" required>
                     </div>
                     <div class="form-group">
                         <label>เลขตัวถังรถ</label>

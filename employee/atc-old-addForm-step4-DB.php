@@ -35,7 +35,6 @@ $price_tax_fine = $_POST['price_tax_fine'];
 
 $LOGIN_EMPLOYEE = $_SESSION['LOGIN_EMPLOYEE'];
 
-print_r($_POST);
 
 $sql = "
     UPDATE tb_customer SET 
