@@ -14,7 +14,7 @@ WHERE
     tb_car.id_category_car = tb_category_car.id AND
     tb_car.id_customer = tb_customer.id AND
     tb_car.car_province_id = tb_province.PROVINCE_ID AND
-    tb_order_service.work_status = 'ไม่เรียบร้อย'
+    tb_order_service.work_status = 'ปิดการขาย'
 GROUP BY(tb_order_service.id)
 ORDER BY(tb_order_service.id) DESC
 ";
@@ -22,20 +22,16 @@ ORDER BY(tb_order_service.id) DESC
 $rs = mysqli_query($conn, $sql);
 ?>
 
-<h1>บันทึกข้อมูล พรบ. และ ทะเบียน ของลูกค้า</h1>
+<h1>รายการปิดการขาย พรบ. และ ทะเบียน ของลูกค้าทั้งหมด</h1>
 
 <div class="row">
     <div class="col-md-12">
 
-        <div class="text-right">
-            <span class="glyphicon glyphicon-envelope"></span>
-            <a href="index.php?menu=atc-new-addForm" class="btn btn-success"> <i class="fa fa-plus"></i> เพิ่ม(ลูกค้าใหม่)</a>
-            <a href="index.php?menu=atc-old-addForm-step1-search" class="btn btn-primary"> <i class="fa fa-plus"></i> เพิ่ม(ลูกค้าเก่า)</a>
-        </div>
+        
 
         <div class="card">
-            <div class="card-header text-white bg-info">
-                จัดการ พรบ. และ ทะเบียน ของลูกค้า
+            <div class="card-header">
+                รายการ พรบ. และ ทะเบียน ของลูกค้า
             </div>
             <div class="card-body">
                 <table class="table table-hover" id="dataTable">
@@ -45,16 +41,16 @@ $rs = mysqli_query($conn, $sql);
                             <th>วันที่มาใช้บริการ</th>
                             <th>ข้อมูลลูกค้า</th>
                             <th>ข้อมูลรถ</th>
-                            <th>ค่าเบี้ย พรบ.</th>
-                            <th>ค่าภาษีรถ</th>
-                            <th>ค่าปรับภาษี</th>
-                            <th>ACTION</th>
+                            <th>ค่าใช้จ่ายทั้งหมด</th>
+                            <th>รวมทั้งสิ้น</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $index = 1;
                         while($row = mysqli_fetch_array($rs)){
+                            $total_price = $row['price_check_car'] + $row['price_atc'] + $row['price_car_tax_order'] + 
+                                $row['price_car_tax_owe'] + $row['price_tax_fine'] + $row['price_service'] + $row['price_service_express'];
                         ?>
                         <tr>
                             <td> <?=$index?> </td>
@@ -68,13 +64,16 @@ $rs = mysqli_query($conn, $sql);
                                 <strong>เลขตัวถัง: </strong> <?=$row['car_chassis']?> <br>
                                 <strong>ประเภทรถ: </strong> <?=$row['category_car_name']?> <br>
                             </td>
-                            <td> <?=number_format($row['price_atc'])?> </td>
-                            <td> <?=number_format($row['price_car_tax_order'])?> </td>
-                            <td> <?=number_format($row['price_tax_fine'])?> </td>
                             <td>
-                                <a href="index.php?menu=atc-editForm&id=<?=$row['id_order_service']?>" class="btn btn-primary"> <i class="fa fa-cog"></i> </a>
-                                <a href="index.php?menu=atc-delDB&id=<?=$row['id_order_service']?>" class="btn btn-danger" onclick="return confirm('ยืนยันการลบ!!!')"> <i class="fa fa-trash"></i> </a>
+                                <strong>ค่าตรวจสภาพรถ: </strong> <?=number_format($row['price_check_car'])?> <br>
+                                <strong>ค่า พรบ.: </strong> <?=number_format($row['price_atc'])?> <br>
+                                <strong>ค่าภาษี: </strong> <?=number_format($row['price_car_tax_order'])?> <br>
+                                <strong>ค่าภาษีย้อนหลัง: </strong> <?=number_format($row['price_car_tax_owe'])?> <br>
+                                <strong>ค่าปรับภาษี: </strong> <?=number_format($row['price_tax_fine'])?> <br>
+                                <strong>ค่าบริการต่อภาษี: </strong> <?=number_format($row['price_service'])?> <br>
+                                <strong>ค่าบริการต่อภาษีด่วน: </strong> <?=number_format($row['price_service_express'])?>
                             </td>
+                            <td> <?=number_format($total_price)?> </td>
                         </tr>
                         <?php 
                             $index++;
@@ -82,17 +81,8 @@ $rs = mysqli_query($conn, $sql);
                         ?>
                     </tbody>
                 </table>
-
-                <div class="text-center">
-                    <a href="index.php?menu=atc-work-status-update" class="btn btn-info" onclick="return confirm('ยืนยันการ ปิดการบันทึกข้อมูล')"> ปิดการบันทึกข้อมูล </a>
-                </div>
-
             </div>
         </div>
 
     </div>
 </div>
-
-
-
-
