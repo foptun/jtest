@@ -11,6 +11,12 @@
                 <a class="nav-link" href="index.php?menu=home">Home</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="index.php?menu=calculate-atc-form">คำนวนค่า พรบ. & ภาษี</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?menu=search-history-form">ค้นหาทะเบียนรถ</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="index.php?menu=test">Test</a>
             </li>
             

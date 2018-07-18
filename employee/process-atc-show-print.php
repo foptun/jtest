@@ -1,4 +1,7 @@
 <?php
+include '../connect/connect.php';
+
+
 $sql = "
 SELECT 
 	tb_customer.*, 
@@ -22,17 +25,31 @@ ORDER BY(tb_order_service.id) DESC
 $rs = mysqli_query($conn, $sql);
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>JTest</title>
+
+        <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/sticky-footer-navbar.css">
+        
+        <link rel="stylesheet" href="../assets/datatable/jquery.dataTables.min.css">
+
+        <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+
+    </head>
+    <body>
+
 <h1>ดำเนินการต่อ พรบ. และ ทะเบียน ของลูกค้า</h1>
 
 <div class="row">
     <div class="col-md-12">
 
-        <div class="text-right">
-            <a href="process-atc-show-print.php" class="btn btn-dark" target="_blank">Print PDF</a>
-        </div>
-
         <div class="card">
-            <div class="card-header  text-white bg-warning">
+            <div class="card-header ">
                 จัดการ พรบ. และ ทะเบียน ของลูกค้า
             </div>
             <div class="card-body">
@@ -46,7 +63,6 @@ $rs = mysqli_query($conn, $sql);
                             <th>ค่าภาษีรถ</th>
                             <th>ค่าปรับภาษี</th>
                             <th>รวม</th>
-                            <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +71,7 @@ $rs = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($rs)){
                         ?>
                         <tr>
-                            <td> <?=$index?> </td>
+                        <td> <?=$index?> </td>
                             <td> <?=$row['service_date']?> </td>
                             <td>
                                 <strong>ชื่อ: </strong> <?=$row['firstname']?> <?=$row['lastname']?> <br>
@@ -69,11 +85,6 @@ $rs = mysqli_query($conn, $sql);
                             <td> <?=number_format($row['price_car_tax_order'])?> </td>
                             <td> <?=number_format($row['price_tax_fine'])?> </td>
                             <td> <?=number_format($row['price_car_tax_order'] + $row['price_tax_fine'])?> </td>
-                            <td>
-                                <a href="index.php?menu=progress-atc-work-status-update&id=<?=$row['id_order_service']?>" class="btn btn-success"> 
-                                    <i class="fa fa-check"></i>  ต่อแล้ว
-                                </a>
-                            </td>
                         </tr>
                         <?php 
                             $index++;
@@ -86,3 +97,15 @@ $rs = mysqli_query($conn, $sql);
 
     </div>
 </div>
+
+
+
+
+
+
+<script type="text/javascript">
+      window.onload = function() { window.print(); }
+</script>
+
+    </body>
+</html>

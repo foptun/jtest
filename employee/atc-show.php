@@ -41,13 +41,13 @@ $rs = mysqli_query($conn, $sql);
                 <table class="table table-hover" id="dataTable">
                     <thead>
                         <tr>
-                            <th>#</th>
+                        <th>#</th>
                             <th>วันที่มาใช้บริการ</th>
                             <th>ข้อมูลลูกค้า</th>
                             <th>ข้อมูลรถ</th>
-                            <th>ค่าเบี้ย พรบ.</th>
                             <th>ค่าภาษีรถ</th>
                             <th>ค่าปรับภาษี</th>
+                            <th>รวม</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -57,7 +57,7 @@ $rs = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($rs)){
                         ?>
                         <tr>
-                            <td> <?=$index?> </td>
+                        <td> <?=$index?> </td>
                             <td> <?=$row['service_date']?> </td>
                             <td>
                                 <strong>ชื่อ: </strong> <?=$row['firstname']?> <?=$row['lastname']?> <br>
@@ -68,12 +68,13 @@ $rs = mysqli_query($conn, $sql);
                                 <strong>เลขตัวถัง: </strong> <?=$row['car_chassis']?> <br>
                                 <strong>ประเภทรถ: </strong> <?=$row['category_car_name']?> <br>
                             </td>
-                            <td> <?=number_format($row['price_atc'])?> </td>
                             <td> <?=number_format($row['price_car_tax_order'])?> </td>
                             <td> <?=number_format($row['price_tax_fine'])?> </td>
+                            <td> <?=number_format($row['price_car_tax_order'] + $row['price_tax_fine'])?> </td>
                             <td>
-                                <a href="index.php?menu=atc-editForm&id=<?=$row['id_order_service']?>" class="btn btn-primary"> <i class="fa fa-cog"></i> </a>
-                                <a href="index.php?menu=atc-delDB&id=<?=$row['id_order_service']?>" class="btn btn-danger" onclick="return confirm('ยืนยันการลบ!!!')"> <i class="fa fa-trash"></i> </a>
+                                <a href="index.php?menu=progress-atc-work-status-update&id=<?=$row['id_order_service']?>" class="btn btn-success"> 
+                                    <i class="fa fa-check"></i>  ต่อแล้ว
+                                </a>
                             </td>
                         </tr>
                         <?php 
