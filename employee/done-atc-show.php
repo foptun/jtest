@@ -73,7 +73,19 @@ $rs = mysqli_query($conn, $sql);
                                 <strong>ค่าบริการต่อภาษี: </strong> <?=number_format($row['price_service'])?> <br>
                                 <strong>ค่าบริการต่อภาษีด่วน: </strong> <?=number_format($row['price_service_express'])?>
                             </td>
-                            <td> <?=number_format($total_price)?> </td>
+                            <td> 
+                                <?php
+                                $text_color = "";
+                                if($total_price <= 999){
+                                    $text_color = "text-warning";
+                                }else if($total_price <= 9999){
+                                    $text_color = "text-primary";
+                                }else{
+                                    $text_color = "text-success";
+                                }
+                                ?>
+                                <div class="<?=$text_color?>"><?=number_format($total_price)?></div>
+                            </td>
                         </tr>
                         <?php 
                             $index++;
